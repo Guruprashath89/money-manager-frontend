@@ -1,4 +1,5 @@
 export default function SummaryCards({ transactions }) {
+
   const income = transactions
     .filter(t => t.type === "income")
     .reduce((sum, t) => sum + Number(t.amount), 0);
@@ -8,34 +9,51 @@ export default function SummaryCards({ transactions }) {
     .reduce((sum, t) => sum + Number(t.amount), 0);
 
   const balance = income - expense;
-  const incomeCount = transactions.filter(t => t.type === "income").length;
-const expenseCount = transactions.filter(t => t.type === "expense").length;
-const totalCount = transactions.length;
 
+  const incomeCount = transactions.filter(t => t.type === "income").length;
+  const expenseCount = transactions.filter(t => t.type === "expense").length;
+  const totalCount = transactions.length;
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
 
-      <div className="bg-green-100 p-4 rounded shadow text-center">
-        <h3 className="font-bold">Income</h3>
-        <p className="text-xl text-green-700">₹ {income}</p>
-        <p className="text-sm text-gray-500">{incomeCount} transactions</p>
+      {/* Income */}
+      <div className="bg-green-100 p-5 rounded-xl shadow-sm hover:shadow-md transition text-center">
+        <h3 className="font-semibold text-gray-700 mb-1">Income</h3>
 
+        <p className="text-2xl font-bold text-green-700">
+          ₹ {income}
+        </p>
 
+        <p className="text-sm text-gray-500 mt-1">
+          {incomeCount} transactions
+        </p>
       </div>
 
-      <div className="bg-red-100 p-4 rounded shadow text-center">
-        <h3 className="font-bold">Expense</h3>
-        <p className="text-xl text-red-700">₹ {expense}</p>
-        <p className="text-sm text-gray-500">{expenseCount} transactions</p>
+      {/* Expense */}
+      <div className="bg-red-100 p-5 rounded-xl shadow-sm hover:shadow-md transition text-center">
+        <h3 className="font-semibold text-gray-700 mb-1">Expense</h3>
 
+        <p className="text-2xl font-bold text-red-600">
+          ₹ {expense}
+        </p>
+
+        <p className="text-sm text-gray-500 mt-1">
+          {expenseCount} transactions
+        </p>
       </div>
 
-      <div className="bg-blue-100 p-4 rounded shadow text-center">
-        <h3 className="font-bold">Balance</h3>
-        <p className="text-xl text-blue-700">₹ {balance}</p>
-        <p className="text-sm text-gray-500">{totalCount} total</p>
+      {/* Balance */}
+      <div className="bg-blue-100 p-5 rounded-xl shadow-sm hover:shadow-md transition text-center">
+        <h3 className="font-semibold text-gray-700 mb-1">Balance</h3>
 
+        <p className="text-2xl font-bold text-blue-700">
+          ₹ {balance}
+        </p>
+
+        <p className="text-sm text-gray-500 mt-1">
+          {totalCount} total
+        </p>
       </div>
 
     </div>
